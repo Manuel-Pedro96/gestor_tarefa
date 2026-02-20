@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TarefaController;
 use App\Http\Controllers\DashboardController;
+use Illuminate\Support\Facades\Artisan;
 
 
 Route::get('/', function () {
@@ -33,3 +34,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 
 require __DIR__.'/auth.php';
+
+Route::get('/arrumar-banco', function () {
+    Artisan::call('migrate --force');
+    return "Tabelas criadas com sucesso!";
+});
